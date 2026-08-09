@@ -1,0 +1,182 @@
+---
+import { profile } from "../data/content";
+
+const nav = [
+  { id: "about", label: "about.md" },
+  { id: "log", label: "log.json" },
+  { id: "builds", label: "builds/" },
+  { id: "stack", label: "stack.toml" },
+  { id: "contact", label: "contact" },
+];
+---
+
+<aside class="sidebar">
+  <div class="sidebar__sticky">
+    <div class="sidebar__brand">
+      <p class="sidebar__eyebrow mono dim">// resume.md</p>
+      <h1 class="sidebar__name">{profile.name}</h1>
+      <p class="sidebar__title mono">{profile.title} <span class="dim">@ UiPath</span></p>
+      <p class="sidebar__tagline">{profile.tagline}</p>
+    </div>
+
+    <nav class="sidebar__nav mono" aria-label="Sections">
+      {
+        nav.map((item, i) => (
+          <a href={`#${item.id}`} class="sidebar__navlink" data-nav={item.id}>
+            <span class="sidebar__navbox" aria-hidden="true" />
+            <span class="sidebar__navnum dim">{String(i + 1).padStart(2, "0")}</span>
+            <span>{item.label}</span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="sidebar__links mono">
+      <a href={profile.github} target="_blank" rel="noreferrer">github ↗</a>
+      <a href={profile.linkedin} target="_blank" rel="noreferrer">linkedin ↗</a>
+      <a href={`mailto:${profile.email}`}>email ↗</a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .sidebar {
+    padding: 56px 32px 40px;
+  }
+  .sidebar__sticky {
+    position: sticky;
+    top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .sidebar__eyebrow {
+    font-size: 11px;
+    text-transform: lowercase;
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+  .sidebar__name {
+    font-size: clamp(32px, 4vw, 42px);
+    font-optical-sizing: auto;
+    font-weight: 460;
+    line-height: 1.08;
+  }
+  .sidebar__title {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .sidebar__title .dim {
+    color: var(--fg-dim);
+  }
+  .sidebar__tagline {
+    margin: 18px 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-optical-sizing: auto;
+    font-size: 17px;
+    color: var(--fg-dim);
+    max-width: 30ch;
+    line-height: 1.45;
+  }
+  .sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 12.5px;
+  }
+  .sidebar__navlink {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 8px;
+    margin: 0 -8px;
+    text-decoration: none;
+    color: var(--fg-dim);
+    border-radius: 3px;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .sidebar__navbox {
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--fg-faint);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .sidebar__navnum {
+    font-size: 10px;
+  }
+  .sidebar__navlink:hover {
+    color: var(--fg);
+    background: var(--bg-raised);
+  }
+  .sidebar__navlink.is-active {
+    color: var(--fg);
+  }
+  .sidebar__navlink.is-active .sidebar__navbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .sidebar__links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12.5px;
+  }
+  .sidebar__links a {
+    text-decoration: none;
+    color: var(--fg-dim);
+    width: fit-content;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .sidebar__links a:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  @media (max-width: 900px) {
+    .sidebar {
+      padding: 40px 20px 8px;
+    }
+    .sidebar__sticky {
+      position: static;
+      gap: 28px;
+    }
+    .sidebar__nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .sidebar__navlink {
+      margin: 0;
+      border: 1px solid var(--border);
+    }
+  }
+</style>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav]");
+  const sections = Array.from(links)
+    .map((l) => document.getElementById(l.dataset.nav || ""))
+    .filter((el): el is HTMLElement => !!el);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const link = document.querySelector(`[data-nav="${id}"]`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach((l) => l.classList.remove("is-active"));
+          link.classList.add("is-active");
+        }
+      });
+    },
+    { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
+  );
+
+  sections.forEach((s) => observer.observe(s));
+</script>

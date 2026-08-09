@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import Analytics from "../components/Analytics.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Andrei Vintila — Principal PM, occasional builder",
+  description = "Principal PM at UiPath working on developer experience, and bringing Studio Desktop to Mac. I build side projects on Cloudflare Workers, Nuxt and MCP.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0c0e0c" />
+    <Analytics />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

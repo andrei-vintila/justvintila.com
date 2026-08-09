@@ -1,0 +1,33 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { profile } from "../data/content";
+---
+
+<section id="about" class="about reveal">
+  <SectionHeading index="01" title="about" />
+  <div class="about__body">
+    {profile.bio.map((p) => <p>{p}</p>)}
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .about__body {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-size: clamp(18px, 2vw, 21px);
+    line-height: 1.6;
+    color: var(--fg);
+    max-width: 62ch;
+  }
+  .about__body p {
+    margin: 0 0 20px;
+  }
+  .about__body p:last-child {
+    margin-bottom: 0;
+    color: var(--fg-dim);
+  }
+</style>

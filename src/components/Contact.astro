@@ -1,0 +1,67 @@
+---
+import { profile } from "../data/content";
+---
+
+<section id="contact" class="contact reveal">
+  <p class="contact__eyebrow mono dim">// 05 — contact</p>
+  <h2 class="contact__headline">
+    Say <span class="accent">hi</span>, or file an issue.
+  </h2>
+  <div class="contact__row mono">
+    <a class="contact__cta" href={`mailto:${profile.email}`}>{profile.email}</a>
+    <div class="contact__socials">
+      <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 72px 0 96px;
+  }
+  .contact__eyebrow {
+    font-size: 11.5px;
+    margin: 0 0 18px;
+  }
+  .contact__headline {
+    font-size: clamp(28px, 5vw, 44px);
+    font-optical-sizing: auto;
+    font-weight: 460;
+    margin: 0 0 36px;
+  }
+  .contact__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .contact__cta {
+    text-decoration: none;
+    color: var(--fg);
+    font-size: 15px;
+    border-bottom: 1px solid var(--accent-dim);
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .contact__cta:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .contact__socials {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+  }
+  .contact__socials a {
+    text-decoration: none;
+    color: var(--fg-dim);
+    transition: color 0.15s ease;
+  }
+  .contact__socials a:hover {
+    color: var(--accent);
+  }
+</style>

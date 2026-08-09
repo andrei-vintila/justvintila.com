@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "justvintila-dev",
+      "runtimeExecutable": "/Users/andreivintila/Code/justvintila.com/scripts/dev.sh",
+      "runtimeArgs": [],
+      "port": 4321
+    },
+    {
+      "name": "justvintila-preview",
+      "runtimeExecutable": "/Users/andreivintila/Code/justvintila.com/scripts/preview.sh",
+      "runtimeArgs": [],
+      "port": 4321
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+---
+interface Props {
+  position?: "top" | "bottom";
+}
+const { position = "top" } = Astro.props;
+---
+
+<div class={`statusbar statusbar--${position} mono`}>
+  <div class="container statusbar__inner">
+    {
+      position === "top" ? (
+        <>
+          <span class="statusbar__prompt">andrei@justvintila<span class="dim">:~$</span></span>
+          <span class="statusbar__right">
+            <span class="statusbar__clock" data-clock>--:--</span>
+            <span class="dim">·</span>
+            <span class="statusbar__loc">Bucharest, RO</span>
+            <span class="statusbar__dot" aria-hidden="true"></span>
+          </span>
+        </>
+      ) : (
+        <>
+          <span class="dim">NORMAL</span>
+          <span class="statusbar__file">resume.md</span>
+          <span class="statusbar__right dim">
+            <span>UTF-8</span>
+            <span>LF</span>
+            <span>Ln 16, Col 1</span>
+          </span>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .statusbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg-inset);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+  .statusbar--bottom {
+    top: auto;
+    border-bottom: none;
+    border-top: 1px solid var(--border);
+  }
+  .statusbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    gap: 16px;
+  }
+  .statusbar__prompt {
+    color: var(--fg-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .statusbar__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg-dim);
+    white-space: nowrap;
+  }
+  .statusbar__file {
+    color: var(--fg-dim);
+  }
+  .statusbar__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  @media (max-width: 640px) {
+    .statusbar__loc { display: none; }
+  }
+</style>
+
+<script>
+  function tick() {
+    const el = document.querySelector("[data-clock]");
+    if (!el) return;
+    const now = new Date();
+    const formatted = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Bucharest",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    }).format(now);
+    el.textContent = formatted;
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>

@@ -1,0 +1,125 @@
+@import "@fontsource-variable/fraunces/full.css";
+@import "@fontsource-variable/fraunces/full-italic.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+:root {
+  --bg: #0c0e0c;
+  --bg-raised: #131612;
+  --bg-inset: #0a0b0a;
+  --fg: #eae6da;
+  --fg-dim: #8d9187;
+  --fg-faint: #575b53;
+  --accent: #ffb703;
+  --accent-dim: #8a6b1f;
+  --green: #7cd66b;
+  --red: #e8654f;
+  --border: #23261f;
+  --border-bright: #3a3e33;
+
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --grid-max: 1180px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* vignette */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.45) 130%);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 480;
+  margin: 0;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-inset);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.dim {
+  color: var(--fg-dim);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.container {
+  max-width: var(--grid-max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+}

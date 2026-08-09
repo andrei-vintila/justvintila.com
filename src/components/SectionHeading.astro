@@ -1,0 +1,43 @@
+---
+interface Props {
+  index: string;
+  title: string;
+}
+const { index, title } = Astro.props;
+---
+
+<div class="sh">
+  <span class="sh__index mono dim">{index}</span>
+  <h2 class="sh__title">{title}</h2>
+  <span class="sh__rule" aria-hidden="true"></span>
+</div>
+
+<style>
+  .sh {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .sh__index {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .sh__title {
+    font-size: 22px;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .sh__rule {
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--border-bright) 0,
+      var(--border-bright) 4px,
+      transparent 4px,
+      transparent 9px
+    );
+  }
+</style>

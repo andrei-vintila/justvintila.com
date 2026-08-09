@@ -1,0 +1,100 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { experience } from "../data/content";
+
+const hashOf = (seed: string) => {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  return h.toString(16).slice(0, 7).padStart(7, "0");
+};
+---
+
+<section id="log" class="log reveal">
+  <SectionHeading index="02" title="log" />
+
+  <ol class="log__list">
+    {
+      experience.map((role) => (
+        <li class="log__item">
+          <div class="log__meta mono dim">
+            <span class="log__hash">{hashOf(role.company + role.role)}</span>
+            <span>{role.period}</span>
+          </div>
+          <div class="log__content">
+            <p class="log__role">
+              {role.role} <span class="dim">— {role.company}</span>
+            </p>
+            <p class="log__detail">{role.detail}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .log {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .log__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .log__list::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .log__item {
+    position: relative;
+    padding: 0 0 32px 28px;
+  }
+  .log__item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border: 1px solid var(--fg-faint);
+    background: var(--bg);
+    transform: rotate(45deg);
+  }
+  .log__item:first-child::before {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-dim);
+  }
+  .log__item:last-child {
+    padding-bottom: 0;
+  }
+  .log__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 11.5px;
+    margin-bottom: 6px;
+  }
+  .log__role {
+    margin: 0 0 6px;
+    font-size: 16px;
+    color: var(--fg);
+  }
+  .log__role .dim {
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .log__detail {
+    margin: 0;
+    color: var(--fg-dim);
+    font-size: 13.5px;
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+</style>

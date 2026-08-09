@@ -1,0 +1,70 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import { skills } from "../data/content";
+
+const groups = Object.entries(skills);
+---
+
+<section id="stack" class="stack reveal">
+  <SectionHeading index="04" title="stack" />
+  <div class="stack__grid">
+    {
+      groups.map(([group, items]) => (
+        <div class="stack__group">
+          <p class="stack__label mono dim">[{group.toLowerCase()}]</p>
+          <ul class="stack__items">
+            {items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stack {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stack__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .stack__label {
+    font-size: 11.5px;
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+  }
+  .stack__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .stack__items li {
+    font-size: 14px;
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    color: var(--fg);
+    padding-left: 14px;
+    position: relative;
+  }
+  .stack__items li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .stack__grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>
