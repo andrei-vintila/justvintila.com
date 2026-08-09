@@ -11,6 +11,9 @@
 	"observability": {
 		"enabled": true
 	},
+	"vars": {
+		"PUBLIC_POSTHOG_HOST": "https://eu.i.posthog.com"
+	},
 	// requires justvintila.com's zone to already be on this Cloudflare account
 	// (Websites > justvintila.com). Remove this block if it isn't yet, and
 	// add the custom domain from the Workers dashboard after the first deploy instead.
