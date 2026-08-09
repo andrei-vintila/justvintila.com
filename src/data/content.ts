@@ -6,7 +6,7 @@ export const profile = {
   github: "https://github.com/andrei-vintila",
   githubUser: "andrei-vintila",
   linkedin: "https://ro.linkedin.com/in/andreivintila88",
-  tagline: "Product manager who still ships code: Cloudflare Workers, Nuxt, MCP servers.",
+  tagline: "Helping customers automate their enterprises.",
   bio: [
     "At UiPath I look after the shared developer experience across our automation products: Maestro BPMN, RPA, Apps and API workflows. On Maestro I'm involved in our BPMN engine implementation, which is used for all Maestro runtimes. I'm also leading the work to bring Studio Desktop to Mac, the first time our core authoring tool will run outside Windows.",
     "Most of the day-to-day is helping customers get to production across all of it, which means finding where they get stuck and taking that away.",
@@ -100,7 +100,6 @@ export const projects: Project[] = [
       "A joke that needed a landing page: does Romania currently have a government? Runs entirely on a single free-tier Cloudflare Worker: a static page, a token-gated status API, crowd-sourced jokes, and a read-only MCP server exposing the answer as a tool. Zero cost to run, effectively zero to maintain, the scope discipline I'd want from any 0→1 bet.",
     stack: ["Cloudflare Workers", "MCP", "KV", "TypeScript"],
     url: "https://github.com/andrei-vintila/avemguvern.ro",
-    highlight: "Ships an MCP tool alongside the website: the same status is queryable by an LLM as by a browser.",
   },
   {
     repo: "mogo-sesizeaza",

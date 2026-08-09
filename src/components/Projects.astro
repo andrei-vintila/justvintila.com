@@ -2,7 +2,7 @@
 import SectionHeading from "./SectionHeading.astro";
 import { projects, profile } from "../data/content";
 
-type Live = { stars: number; pushedAt: string; language: string | null };
+type Live = { pushedAt: string; language: string | null };
 
 const liveData = new Map<string, Live>();
 
@@ -18,7 +18,6 @@ await Promise.all(
       if (!res.ok) return;
       const json = (await res.json()) as any;
       liveData.set(p.repo, {
-        stars: json.stargazers_count ?? 0,
         pushedAt: json.pushed_at ?? "",
         language: json.language ?? null,
       });
@@ -49,11 +48,7 @@ const fmtDate = (iso: string) => {
             <div class="pcard__top mono">
               <span class="pcard__dot" aria-hidden="true" />
               <span class="pcard__name">{p.name}</span>
-              {live && (
-                <span class="pcard__stars dim">
-                  ★ {live.stars} <span class="dim">· {fmtDate(live.pushedAt)}</span>
-                </span>
-              )}
+              {live && <span class="pcard__stars dim">{fmtDate(live.pushedAt)}</span>}
             </div>
             <p class="pcard__desc">{p.description}</p>
             {p.highlight && <p class="pcard__highlight mono">// {p.highlight}</p>}
