@@ -38,7 +38,7 @@ export const experience: Experience[] = [
     role: "Senior Product Manager",
     period: "Aug 2022 — Apr 2025",
     detail:
-      "Robot and Process Orchestration in the Automate pillar: specced the orchestration APIs and scheduling logic robots run against in production, and took Maestro from concept to public preview in six months.",
+      "Robot and Process Orchestration in the Automate pillar. Took Maestro from concept to public preview in six months.",
     url: "https://www.uipath.com",
   },
   {
@@ -46,7 +46,7 @@ export const experience: Experience[] = [
     role: "Senior Product Manager",
     period: "Nov 2020 — Aug 2022",
     detail:
-      "Ran online payments for 20,000 restaurants, our own subscription billing, and the WordPress ordering plugin codebase (10,000+ active installs). Wrote the SQL and did the data analysis myself, the old-fashioned way.",
+      "Ran online payments for 20,000 restaurants, our own subscription billing, and the WordPress ordering plugin (10,000+ active installs). Wrote the SQL and did the data analysis myself, the old-fashioned way.",
   },
   {
     company: "Aurachain",
@@ -60,7 +60,7 @@ export const experience: Experience[] = [
     role: "Product Manager",
     period: "Sept 2016 — Apr 2019",
     detail:
-      "Moved from solutions architecture into product ownership for the same platform, and kept owning its technical integrations from the PM seat.",
+      "Moved from solutions architecture into product ownership for the same platform.",
   },
   {
     company: "AGYS AG",
@@ -73,7 +73,7 @@ export const experience: Experience[] = [
     company: "BPM Wave International AG",
     role: "Business / Technical Analyst",
     period: "Aug 2012 — Aug 2014",
-    detail: "Bridged business process design and implementation, from process modeling down to the workflow engine config.",
+    detail: "Bridged business process design and BPM system implementation.",
   },
   {
     company: "EDATA",
